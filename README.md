@@ -99,7 +99,9 @@ Save the file and restart `app.py`.
 
 ## Team Members
 
-- (Write names here)
+- Rohit
+- Tejas
+- Karan
 
 ---
 
