@@ -1,4 +1,5 @@
-# Campus Chatbot
+# <img src="images/logo.png" width="80" height="80" alt="Logo"> Campus Chatbot 
+
 
 The Campus Chatbot is a simple and intelligent assistant designed to help students find university-related information easily. It answers questions such as library timings, module registration steps, timetable guidance, and other basic campus queries.
 
