@@ -1,5 +1,42 @@
 [
-  {"question": "What are library timings?", "answer": "The library is open 9:00 - 19:00 Monday to Saturday."},
-  {"question": "How to register for exams?", "answer": "Login to the student portal → 'Exams' → 'Register'."},
-  {"question": "Where is the admin office?", "answer": "Block A, Ground Floor near the reception."}
+  {
+    "question": "What is the main address and general contact number for the Hagen campus?",
+    "answer": "The Hagen Campus of the University of Applied Sciences South Westphalia is located at Haldener Straße 182, 58095 Hagen. Postal address: P.O. Box 600220, 58138 Hagen. General phone number: (02331) 9330-0."
+  },
+  {
+    "question": "What are the opening hours of the campus buildings?",
+    "answer": "Campus buildings are typically open Monday to Friday from 07:00 to 21:00 and on Saturdays from 08:00 to 18:00."
+  },
+  {
+    "question": "How do I access the campus Wi-Fi (Eduroam)?",
+    "answer": "You can connect to Eduroam using your university login credentials. Select the 'eduroam' network and sign in with your student email and password."
+  },
+  {
+    "question": "Where can I view my lecture schedules and seminar timings?",
+    "answer": "You can check your weekly lecture and seminar schedule through the FH Südwestfalen student portal VPIS under the 'Weekly Schedule' section."
+  },
+  {
+    "question": "Where is the Mensa ('Snack it!') located and what are its opening hours?",
+    "answer": "The Mensa 'Snack it!' is located in the basement of the Hagen campus at Haldener Straße 182. Opening hours: Monday–Friday: 07:30–14:30, Saturday: 09:30–13:30. Hot meals are served Monday–Thursday from 11:00–14:00 and Friday from 11:00–13:45."
+  },
+  {
+    "question": "What are the opening hours and contact details of the Student Service Office?",
+    "answer": "You can contact the Student Service Office at (02331) 9330-6851 or service-hagen@fh-swf.de. It is located at Haldener Straße 182, Rooms HE 11 and HE 11/1. Opening hours: Monday–Friday: 08:30–12:00. Additional hours Tuesday and Wednesday: 13:00–14:30. Saturday: 08:30–13:00 (and 14:00–15:00 for cooperative education students)."
+  },
+  {
+    "question": "Where is the main library located and what are its opening times?",
+    "answer": "The Fachbibliothek Hagen (main library) is located at Haldener Straße 182. It is open Monday to Friday from 07:00 to 21:00 and on Saturdays from 08:00 to 18:00."
+  },
+  {
+    "question": "Is there student housing available near the Hagen campus?",
+    "answer": "Yes. The Studierendenwerk Dortmund operates the student residence 'Im Alten Holz 133–135', located about 1.4 km from the campus. It offers modern single and double apartments. Applications can be submitted online via the Studierendenwerk Dortmund website."
+  },
+  {
+    "question": "How can I find student jobs, SHK/WHK positions, or internships?",
+    "answer": "Student jobs, internships, and thesis opportunities are available through the FH Südwestfalen Career Portal (Karriereportal), operated in cooperation with JobTeaser."
+  },
+  {
+    "question": "What is a Semesterticket?",
+    "answer": "A Semesterticket is a prepaid public transport pass included in your semester fee. It allows unlimited travel within the authorized region using buses, trams, S-Bahn, U-Bahn, and regional trains (excluding ICE/IC). It is valid for the entire semester."
+  }
 ]
