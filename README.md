@@ -39,17 +39,6 @@ This chatbot improves student support by making information easily accessible wi
 
 ---
 
-## Folder Structure
-
-Campus-ChatBot/
-│ app.py              → Backend logic (Flask + NLP)
-│ faqs.json           → Question/Answer knowledge base
-│ index.html          → Chat UI page
-│ script.js           → Handles UI chat logic + server requests
-│ venv/               → Virtual Python environment (optional)
-
----
-
 ## How to Run
 
 1. Open project folder in terminal:
