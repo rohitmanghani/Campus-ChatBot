@@ -89,12 +89,12 @@ Open faqs.json and add new Q&A in the following format:
   {
     "question": "How do I register for modules?",
     "answer": "Go to VPIS → Module Registration → Select Semester → Submit."
-  },
+  },<br>
   {
     "question": "Where can I see the campus map?",
     "answer": "Here is the campus map.",
     "image": "static/map.png"
-  },
+  },<br>
   {
     "question": "Where is the student portal?",
     "answer": "You can access it below.",
