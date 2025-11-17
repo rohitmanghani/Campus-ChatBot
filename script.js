@@ -15,7 +15,7 @@ chatToggleBtn.addEventListener("click", () => {
   }
 });
 
-// Add message bubble
+// Add simple text bubble
 function addMessage(sender, text) {
   const msg = document.createElement("div");
   msg.className = sender === "user" ? "chat-user" : "chat-bot";
@@ -71,7 +71,7 @@ function hideTyping() {
   if (typing) typing.remove();
 }
 
-// Send message
+// MAIN sendMessage function
 async function sendMessage() {
   const text = chatInput.value.trim();
   if (!text) return;
@@ -80,15 +80,16 @@ async function sendMessage() {
   chatInput.value = "";
   removeQuickReplies();
 
-  // Greeting shortcuts (local logic, no backend needed)
+  // Local greeting shortcuts
   if (["hi", "hello", "hey"].includes(text.toLowerCase())) {
     addMessage("bot", "👋 Hello! How can I assist you today?");
     showQuickReplies(["Library Hours", "Campus Map", "Exam Info"]);
     return;
   }
 
-  if (["Thanks", "thx"].includes(text.toLowerCase())) {
-    addMessage("bot", "Youre welcome! 😊 If you have more questions, feel free to ask.");
+  // Local thanks response
+  if (["thanks", "thank you", "thx"].includes(text.toLowerCase())) {
+    addMessage("bot", "You're welcome! 😊 Let me know if you need anything else.");
     return;
   }
 
@@ -103,22 +104,77 @@ async function sendMessage() {
 
     const data = await res.json();
     hideTyping();
-    addMessage("bot", data.answer || "🤔 I’m not sure about that yet.");
-    
+
+    // ⬇️ Use rich bot handler (supports links/images/PDFs)
+    addBotMessage(data);
+
     if (data.quick_replies && data.quick_replies.length > 0) {
       showQuickReplies(data.quick_replies);
     }
 
   } catch (err) {
     hideTyping();
-    addMessage("bot", "⚠️ Could not connect to the server. Check if backend is running.");
+    addMessage("bot", "⚠️ Could not connect to the server. Please check if backend is running.");
   }
 }
 
-// Send message on Enter
+// Send on Enter
 chatInput.addEventListener("keypress", e => {
   if (e.key === "Enter") {
     e.preventDefault();
     sendMessage();
   }
 });
+
+// RICH MESSAGE HANDLER (links, images, PDFs)
+function addBotMessage(data) {
+  const msgBox = document.getElementById("chatbot-messages");
+
+  // Answer bubble
+  const botMsg = document.createElement("div");
+  botMsg.classList.add("chat-bot");
+  botMsg.innerText = data.answer;
+  msgBox.appendChild(botMsg);
+
+  // Show image  
+  if (data.image) {
+    const img = document.createElement("img");
+    img.src = data.image;
+    img.style.maxWidth = "100%";
+    img.style.borderRadius = "10px";
+    img.style.marginTop = "6px";
+    msgBox.appendChild(img);
+  }
+
+  // Show PDF as a quick-reply style button
+  if (data.file) {
+      const pdfBtn = document.createElement("button");
+      pdfBtn.className = "quick-reply-btn";
+      pdfBtn.innerText = "📄 Download PDF";
+      pdfBtn.onclick = () => {
+          window.open(data.file, "_blank");
+      };
+
+      const wrapper = document.createElement("div");
+      wrapper.appendChild(pdfBtn);
+
+      msgBox.appendChild(wrapper);
+  }
+
+  // Show external link
+  if (data.link) {
+    const linkBtn = document.createElement("button");
+    linkBtn.className = "quick-reply-btn";
+    linkBtn.innerText = "🔗Open Link";
+    linkBtn.onclick = () => {
+        window.open(data.link, "_blank");
+    };
+
+    const wrapper = document.createElement("div");
+    wrapper.appendChild(linkBtn);
+
+    msgBox.appendChild(wrapper);
+}
+
+  msgBox.scrollTop = msgBox.scrollHeight;
+}

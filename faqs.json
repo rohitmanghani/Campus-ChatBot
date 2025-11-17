@@ -38,5 +38,20 @@
   {
     "question": "What is a Semesterticket?",
     "answer": "A Semesterticket is a prepaid public transport pass included in your semester fee. It allows unlimited travel within the authorized region using buses, trams, S-Bahn, U-Bahn, and regional trains (excluding ICE/IC). It is valid for the entire semester."
+  },
+  {
+    "question": "Where is the student portal?",
+    "answer": "You can access the student portal here.",
+    "link": "https://vpis.fh-swf.de"
+  },
+  {
+    "question": "Where is the weeks Timetable?",
+    "answer": "You can access the student portal here.",
+    "file": "static/TT.pdf"
+  },
+  {
+    "question": "Where can I see the campus map?",
+    "answer": "Here is the campus map.",
+    "image": "static/map.png"
   }
 ]

@@ -1,64 +1,135 @@
 from flask import Flask, request, jsonify
-from sentence_transformers import SentenceTransformer, util
 from flask_cors import CORS
 import json
+from datetime import datetime
+from sentence_transformers import SentenceTransformer, util
+from googletrans import Translator
 
 app = Flask(__name__)
 CORS(app)
 
-##########################################################
-# 1) Load NLP Model
-##########################################################
-model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+translator = Translator()
+FAQ_PATH = "faqs.json"
+UNKNOWN_LOG = "unknown_questions.log"
 
-##########################################################
-# 2) Load FAQ Data
-##########################################################
-with open("faqs.json", "r", encoding="utf-8") as f:
+with open(FAQ_PATH, "r", encoding="utf-8") as f:
     faqs = json.load(f)
 
 questions = [item["question"] for item in faqs]
 answers = [item["answer"] for item in faqs]
 
-# Pre-encode FAQ questions into embeddings (fast lookup)
+# Pre-compute embeddings
 question_embeddings = model.encode(questions, convert_to_tensor=True)
 
-##########################################################
-# 3) Chatbot Response Route
-##########################################################
+GREETINGS = {"hi", "hello", "hey", "hii", "good morning", "good afternoon", "good evening"}
+GOODBYES = {"bye", "goodbye", "see you", "cya", "take care", "farewell", "good night"}
+
+
+def log_unknown(query):
+    with open(UNKNOWN_LOG, "a", encoding="utf-8") as f:
+        f.write(f"{datetime.utcnow().isoformat()} | {query}\n")
+
 @app.route('/ask', methods=['POST'])
 def ask():
     data = request.get_json()
     user_query = data.get("query", "").strip()
 
-    # Handle empty input
-    if len(user_query) < 2:
-        return jsonify({"answer": "Can you please type a complete question? 😊"})
+    # A) Empty check (before translation)
+    if not user_query:
+        return jsonify({"answer": "Please type something so I can help 😊"}), 200
 
-    # Encode user message
-    query_embedding = model.encode(user_query, convert_to_tensor=True)
+    detected = translator.detect(user_query)
+    user_lang = detected.lang
 
-    # Compute similarity
-    scores = util.cos_sim(query_embedding, question_embeddings)[0]
+    if user_lang != "en":
+        user_query_en = translator.translate(user_query, src=user_lang, dest="en").text
+    else:
+        user_query_en = user_query
+
+    q_lower = user_query_en.lower()
+    words = q_lower.split()
+
+
+    if len(words) <= 3 and any(w in GREETINGS for w in words):
+        response_text = "👋 Hi! I’m the Campus Chatbot. How can I help you today?"
+        if user_lang != "en":
+            response_text = translator.translate(response_text, dest=user_lang).text
+
+        return jsonify({
+            "answer": response_text,
+            "quick_replies": ["Library Hours", "Campus Map", "Exam Info"],
+            "confidence": "1.0"
+        })
+
+    if len(words) <= 3 and any(w in GOODBYES for w in words):
+        response_text = "👋 Goodbye! Feel free to ask again anytime."
+        if user_lang != "en":
+            response_text = translator.translate(response_text, dest=user_lang).text
+
+        return jsonify({
+            "answer": response_text,
+            "quick_replies": ["Library Hours", "Admissions FAQ", "Campus Services"],
+            "confidence": "1.0"
+        })
+
+
+    if len(user_query_en) < 3:
+        response_text = "Can you please provide a complete question? 😊"
+        if user_lang != "en":
+            response_text = translator.translate(response_text, dest=user_lang).text
+
+        return jsonify({"answer": response_text})
+
+    query_emb = model.encode(user_query_en, convert_to_tensor=True)
+    scores = util.cos_sim(query_emb, question_embeddings)[0]
+
     best_index = int(scores.argmax())
     best_score = float(scores[best_index])
 
-    ##########################################################
-    # 4) Confidence Based Answer
-    ##########################################################
     if best_score < 0.50:
+        log_unknown(user_query)
+
+        reply_text = "I'm not fully sure about that 🤔. Could you rephrase your question?"
+        if user_lang != "en":
+            reply_text = translator.translate(reply_text, dest=user_lang).text
+
         return jsonify({
-            "answer": "I'm not fully sure about that yet 🤔. Could you rephrase your question?"
+            "answer": reply_text,
+            "quick_replies": ["Library Hours", "Semester Dates", "Student Portal"],
+            "confidence": f"{best_score:.2f}"
         })
 
-    # Return matched answer
+    faq_item = faqs[best_index]
+    final_answer = faq_item["answer"]
+
+    # Translate answer back to user's language
+    if user_lang != "en":
+        final_answer = translator.translate(final_answer, src="en", dest=user_lang).text
+
+    response = {
+        "answer": final_answer,
+        "confidence": f"{best_score:.2f}"
+    }
+
+    # Rich content (PDF, image, link)
+    if "image" in faq_item:
+        response["image"] = faq_item["image"]
+    if "file" in faq_item:
+        response["file"] = faq_item["file"]
+    if "link" in faq_item:
+        response["link"] = faq_item["link"]
+
+    return jsonify(response)
+
+@app.route('/health', methods=['GET'])
+def health():
     return jsonify({
-        "answer": answers[best_index],
-        "confidence": f"{best_score * 100:.1f}%"
+        "status": "running",
+        "faq_count": len(questions),
+        "model": "MiniLM-L6-v2 loaded",
+        "translation": "GoogleTrans active"
     })
 
-##########################################################
-# 5) Run Server
-##########################################################
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=5000, debug=True)

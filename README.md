@@ -1,28 +1,40 @@
 # Campus Chatbot
 
-The Campus Chatbot is a simple and intelligent assistant designed to help students find university-related information easily. It answers questions such as library timings, module registration steps, timetable guidance, and other basic campus queries.
+The Campus Chatbot is an intelligent virtual assistant designed to help students quickly access important university-related information.
+Powered by Natural Language Processing (NLP) and multilingual support, it allows students to ask questions naturally and receive instant, accurate answers.
 
-The goal of this project is to improve student support by providing quick and clear answers without requiring students to search multiple pages or contact help desks.
+This chatbot improves student support by making information easily accessible without browsing multiple pages or contacting administrative offices.
 
 ---
 
 ## Features
 
-- Understands natural language questions (NLP-based)
-- Responds using information stored in a FAQ knowledge base
-- Easy-to-use chat interface (HTML/CSS/JS)
-- Flask backend API processes messages
-- Works locally and can be integrated into any website
+- 🤖 NLP-based question understanding (semantic similarity using MiniLM)
+- 🌍 Multi-language support (German, Hindi, Spanish, etc.)
+- 🧠 FAQ-driven knowledge base
+- 📄 PDF support (exam timetables, forms)
+- 🖼️ Image support (campus map, location images)
+- 🔗 Clickable link buttons (student portal, VPIS)
+- 💬 Modern floating chat UI
+- ⚡ Flask backend API
+- 📝 Logs unknown questions for continuous improvement
 
 ---
 
-## Technologies Used
+## 🛠️ Technologies Used
 
+### **Backend**
 - Python (Flask)
-- JavaScript (Frontend)
-- Sentence Transformers (all-MiniLM-L6-v2 NLP model)
-- PyTorch (CPU version)
+- Sentence Transformers (`all-MiniLM-L6-v2`)
+- PyTorch (CPU)
+- GoogleTrans (auto-translation)
 - Flask-CORS
+
+### **Frontend**
+- HTML / CSS / JavaScript
+- Floating chatbot widget
+- Quick reply buttons
+- Rich rendering for links, images, PDFs
 
 ---
 
@@ -50,6 +62,9 @@ Campus-ChatBot/
    pip install torch --index-url https://download.pytorch.org/whl/cpu
    pip install sentence-transformers
    pip install flask flask_cors
+   pip install googletrans==4.0.0-rc1
+   If googletrans does not work:
+      pip install deep-translator
 
 4. Start backend server:
    python app.py
@@ -59,17 +74,20 @@ Campus-ChatBot/
 
 5. Open the chat UI:
    Double click on index.html to open in browser.
+   The chatbot will appear as a floating widget.
 
 ---
 
 ## How It Works
 
 - The user types a message in the chat.
-- The browser sends the message to Flask backend (`/ask` endpoint).
-- NLP converts the message into vector representation.
-- The chatbot compares it with stored questions in faqs.json.
-- It returns the most relevant answer if confidence is high.
-- If confidence is low, the bot asks the user to rephrase.
+- Backend detects language
+- If non-English → translates to English
+- NLP model finds closest FAQ
+- If confidence is high → return answer
+- If low → ask user to rephrase
+- Answer translated back to user’s language
+- UI displays text, images, PDFs, and link buttons
 
 ---
 
@@ -81,6 +99,16 @@ Open faqs.json and add new Q&A in the following format:
   {
     "question": "How do I register for modules?",
     "answer": "Go to VPIS → Module Registration → Select Semester → Submit."
+  },
+  {
+    "question": "Where can I see the campus map?",
+    "answer": "Here is the campus map.",
+    "image": "static/map.png"
+  },
+  {
+    "question": "Where is the student portal?",
+    "answer": "You can access it below.",
+    "link": "https://vpis.fh-swf.de"
   }
 ]
 
@@ -94,6 +122,9 @@ Save the file and restart `app.py`.
 - "How do I register for modules?"
 - "Where can I see my timetable?"
 - "How do I contact admin office?"
+- Wo ist die Bibliothek?” 🇩🇪
+- “कैंपस मैप कहाँ है?” 🇮🇳
+- “Dónde está mi horario?” 🇪🇸
 
 ---
 
@@ -102,6 +133,8 @@ Save the file and restart `app.py`.
 - Rohit
 - Tejas
 - Karan
+- Ahmed
+- Sonika
 
 ---
 
@@ -110,9 +143,5 @@ Save the file and restart `app.py`.
 - NLP chatbot working ✅
 - Web chat UI connected ✅
 - FAQ knowledge base editable ✅
-
-Future improvements (optional):
-- Add quick reply buttons
-- Add voice input
-- Deploy on web / campus portal
+- Multi-language Support ✅
 
