@@ -164,25 +164,6 @@
       chatInput.value = "";
       removeQuickReplies();
       sendBtn.disabled = true;
-
-      // Local quick responses
-      if (["hi", "hello", "hey"].includes(text.toLowerCase())) {
-        setTimeout(() => {
-          addMessage("bot", "👋 Hello! How can I assist you today?");
-          showQuickReplies(["Library Hours", "Campus Map", "Exam Info"]);
-          sendBtn.disabled = false;
-        }, 500);
-        return;
-      }
-
-      if (["thanks", "thank you", "thx"].includes(text.toLowerCase())) {
-        setTimeout(() => {
-          addMessage("bot", "You're welcome! 😊 Let me know if you need anything else.");
-          sendBtn.disabled = false;
-        }, 500);
-        return;
-      }
-
       showTyping();
 
       try {
