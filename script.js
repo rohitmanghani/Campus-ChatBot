@@ -1,180 +1,279 @@
-// Select elements
-const chatToggleBtn = document.getElementById("chatbot-button");
-const chatWindow = document.getElementById("chatbot-window");
-const chatMessages = document.getElementById("chatbot-messages");
-const chatInput = document.getElementById("chatbot-input");
+    const chatToggleBtn = document.getElementById("chatbot-button");
+    const chatWindow = document.getElementById("chatbot-window");
+    const closeBtn = document.getElementById("close-btn");
+    const chatMessages = document.getElementById("chatbot-messages");
+    const chatInput = document.getElementById("chatbot-input");
+    const chatForm = document.getElementById("chatbot-form");
+    const sendBtn = document.getElementById("send-btn");
+    const suggestionTooltip = document.getElementById("suggestion-tooltip");
+    const tooltipCloseBtn = document.getElementById("tooltip-close");
 
-// Toggle chatbot window
-chatToggleBtn.addEventListener("click", () => {
-  chatWindow.style.display = chatWindow.style.display === "flex" ? "none" : "flex";
+    let isFirstOpen = true;
 
-  // First open → send greeting once
-  if (chatMessages.childElementCount === 0) {
-    addMessage("bot", "👋 Hi! I’m your Campus Chatbot. How can I help you today?");
-    showQuickReplies(["Library Hours", "Class Schedules", "Office Location"]);
-  }
-});
+    // Show suggestion tooltip after 2 seconds
+    setTimeout(() => {
+      if (!chatWindow.classList.contains("show")) {
+        suggestionTooltip.style.display = "flex";
+        // Stop pulsing when tooltip shows
+        chatToggleBtn.classList.remove("pulsing");
+      }
+    }, 2000);
 
-// Add simple text bubble
-function addMessage(sender, text) {
-  const msg = document.createElement("div");
-  msg.className = sender === "user" ? "chat-user" : "chat-bot";
-  msg.innerText = text;
-  chatMessages.appendChild(msg);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-// Show quick reply buttons
-function showQuickReplies(buttons = []) {
-  removeQuickReplies();
-  if (buttons.length === 0) return;
-
-  const container = document.createElement("div");
-  container.id = "quick-replies";
-  container.style.display = "flex";
-  container.style.flexWrap = "wrap";
-  container.style.gap = "6px";
-  container.style.marginTop = "6px";
-
-  buttons.forEach(text => {
-    const btn = document.createElement("button");
-    btn.className = "quick-reply-btn";
-    btn.innerText = text;
-    btn.onclick = () => {
-      chatInput.value = text;
-      sendMessage();
-    };
-    container.appendChild(btn);
-  });
-
-  chatMessages.appendChild(container);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-function removeQuickReplies() {
-  const qr = document.getElementById("quick-replies");
-  if (qr) qr.remove();
-}
-
-// Typing indicator
-function showTyping() {
-  const typing = document.createElement("div");
-  typing.className = "chat-bot";
-  typing.id = "typing";
-  typing.innerText = "typing...";
-  chatMessages.appendChild(typing);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-function hideTyping() {
-  const typing = document.getElementById("typing");
-  if (typing) typing.remove();
-}
-
-// MAIN sendMessage function
-async function sendMessage() {
-  const text = chatInput.value.trim();
-  if (!text) return;
-
-  addMessage("user", text);
-  chatInput.value = "";
-  removeQuickReplies();
-
-  // Local greeting shortcuts
-  if (["hi", "hello", "hey"].includes(text.toLowerCase())) {
-    addMessage("bot", "👋 Hello! How can I assist you today?");
-    showQuickReplies(["Library Hours", "Campus Map", "Exam Info"]);
-    return;
-  }
-
-  // Local thanks response
-  if (["thanks", "thank you", "thx"].includes(text.toLowerCase())) {
-    addMessage("bot", "You're welcome! 😊 Let me know if you need anything else.");
-    return;
-  }
-
-  showTyping();
-
-  try {
-    const res = await fetch("http://127.0.0.1:5000/ask", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query: text })
+    // Close tooltip when clicking X button
+    tooltipCloseBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      suggestionTooltip.style.display = "none";
+      // Resume pulsing when tooltip is closed
+      chatToggleBtn.classList.add("pulsing");
     });
 
-    const data = await res.json();
-    hideTyping();
+    // Click suggestion to open chat
+    suggestionTooltip.addEventListener("click", (e) => {
+      if (e.target === tooltipCloseBtn) return;
+      suggestionTooltip.style.display = "none";
+      // Stop pulsing when chat opens
+      chatToggleBtn.classList.remove("pulsing");
+      chatWindow.classList.add("show");
+      if (isFirstOpen) {
+        isFirstOpen = false;
+        setTimeout(() => {
+          addMessage("bot", "👋 Hi! I'm your Campus Assistant. How can I help you today?");
+          showQuickReplies(["Library Hours", "Campus Map", "Exam Info"]);
+        }, 300);
+      }
+      chatInput.focus();
+    });
 
-    // ⬇️ Use rich bot handler (supports links/images/PDFs)
-    addBotMessage(data);
+    // Toggle chat window
+    chatToggleBtn.addEventListener("click", () => {
+      suggestionTooltip.style.display = "none";
+      chatWindow.classList.toggle("show");
+      // Stop pulsing when chat is open
+      if (chatWindow.classList.contains("show")) {
+        chatToggleBtn.classList.remove("pulsing");
+      }
+      if (chatWindow.classList.contains("show") && isFirstOpen) {
+        isFirstOpen = false;
+        setTimeout(() => {
+          addMessage("bot", "👋 Hi! I'm your Campus Assistant. How can I help you today?");
+          showQuickReplies(["Library Hours", "Campus Map", "Exam Info"]);
+        }, 300);
+      }
+      if (chatWindow.classList.contains("show")) {
+        chatInput.focus();
+      }
+    });
 
-    if (data.quick_replies && data.quick_replies.length > 0) {
-      showQuickReplies(data.quick_replies);
+    closeBtn.addEventListener("click", () => {
+      chatWindow.classList.remove("show");
+    });
+
+    // Add message with avatar
+    function addMessage(sender, text) {
+      const wrapper = document.createElement("div");
+      wrapper.className = `message-wrapper ${sender}`;
+
+      if (sender === "bot") {
+        const avatar = document.createElement("div");
+        avatar.className = "message-avatar";
+        const img = document.createElement("img");
+        img.src = "images/logo.png";
+        img.alt = "Bot";
+        avatar.appendChild(img);
+        wrapper.appendChild(avatar);
+      }
+
+      const msg = document.createElement("div");
+      msg.className = sender === "user" ? "chat-user" : "chat-bot";
+      msg.textContent = text;
+      wrapper.appendChild(msg);
+
+      if (sender === "user") {
+        const avatar = document.createElement("div");
+        avatar.className = "message-avatar";
+        avatar.textContent = "👤";
+        wrapper.appendChild(avatar);
+      }
+
+      chatMessages.appendChild(wrapper);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-  } catch (err) {
-    hideTyping();
-    addMessage("bot", "⚠️ Could not connect to the server. Please check if backend is running.");
-  }
-}
+    // Quick replies
+    function showQuickReplies(buttons = []) {
+      removeQuickReplies();
+      if (buttons.length === 0) return;
 
-// Send on Enter
-chatInput.addEventListener("keypress", e => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    sendMessage();
-  }
-});
+      const container = document.createElement("div");
+      container.id = "quick-replies";
 
-// RICH MESSAGE HANDLER (links, images, PDFs)
-function addBotMessage(data) {
-  const msgBox = document.getElementById("chatbot-messages");
+      buttons.forEach(text => {
+        const btn = document.createElement("button");
+        btn.className = "quick-reply-btn";
+        btn.textContent = text;
+        btn.onclick = () => {
+          chatInput.value = text;
+          sendMessage();
+        };
+        container.appendChild(btn);
+      });
 
-  // Answer bubble
-  const botMsg = document.createElement("div");
-  botMsg.classList.add("chat-bot");
-  botMsg.innerText = data.answer;
-  msgBox.appendChild(botMsg);
+      chatMessages.appendChild(container);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
 
-  // Show image  
-  if (data.image) {
-    const img = document.createElement("img");
-    img.src = data.image;
-    img.style.maxWidth = "100%";
-    img.style.borderRadius = "10px";
-    img.style.marginTop = "6px";
-    msgBox.appendChild(img);
-  }
+    function removeQuickReplies() {
+      const qr = document.getElementById("quick-replies");
+      if (qr) qr.remove();
+    }
 
-  // Show PDF as a quick-reply style button
-  if (data.file) {
-      const pdfBtn = document.createElement("button");
-      pdfBtn.className = "quick-reply-btn";
-      pdfBtn.innerText = "📄 Download PDF";
-      pdfBtn.onclick = () => {
-          window.open(data.file, "_blank");
-      };
-
+    // Typing indicator
+    function showTyping() {
       const wrapper = document.createElement("div");
-      wrapper.appendChild(pdfBtn);
+      wrapper.className = "message-wrapper bot";
+      wrapper.id = "typing";
 
-      msgBox.appendChild(wrapper);
-  }
+      const avatar = document.createElement("div");
+      avatar.className = "message-avatar";
+      const img = document.createElement("img");
+      img.src = "images/logo.png";
+      img.alt = "Bot";
+      avatar.appendChild(img);
+      wrapper.appendChild(avatar);
 
-  // Show external link
-  if (data.link) {
-    const linkBtn = document.createElement("button");
-    linkBtn.className = "quick-reply-btn";
-    linkBtn.innerText = "🔗Open Link";
-    linkBtn.onclick = () => {
-        window.open(data.link, "_blank");
-    };
+      const typing = document.createElement("div");
+      typing.className = "typing-indicator";
+      typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+      wrapper.appendChild(typing);
 
-    const wrapper = document.createElement("div");
-    wrapper.appendChild(linkBtn);
+      chatMessages.appendChild(wrapper);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
 
-    msgBox.appendChild(wrapper);
-}
+    function hideTyping() {
+      const typing = document.getElementById("typing");
+      if (typing) typing.remove();
+    }
 
-  msgBox.scrollTop = msgBox.scrollHeight;
-}
+    // Send message
+    async function sendMessage() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+
+      addMessage("user", text);
+      chatInput.value = "";
+      removeQuickReplies();
+      sendBtn.disabled = true;
+
+      // Local quick responses
+      if (["hi", "hello", "hey"].includes(text.toLowerCase())) {
+        setTimeout(() => {
+          addMessage("bot", "👋 Hello! How can I assist you today?");
+          showQuickReplies(["Library Hours", "Campus Map", "Exam Info"]);
+          sendBtn.disabled = false;
+        }, 500);
+        return;
+      }
+
+      if (["thanks", "thank you", "thx"].includes(text.toLowerCase())) {
+        setTimeout(() => {
+          addMessage("bot", "You're welcome! 😊 Let me know if you need anything else.");
+          sendBtn.disabled = false;
+        }, 500);
+        return;
+      }
+
+      showTyping();
+
+      try {
+        const res = await fetch("http://127.0.0.1:5000/ask", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query: text })
+        });
+
+        const data = await res.json();
+        hideTyping();
+
+        addBotMessage(data);
+
+        if (data.quick_replies && data.quick_replies.length > 0) {
+          showQuickReplies(data.quick_replies);
+        }
+
+      } catch (err) {
+        hideTyping();
+        addMessage("bot", "⚠️ Could not connect to the server. Please check if backend is running.");
+      }
+
+      sendBtn.disabled = false;
+    }
+
+    // Rich message handler
+    function addBotMessage(data) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "message-wrapper bot";
+
+      const avatar = document.createElement("div");
+      avatar.className = "message-avatar";
+      const img = document.createElement("img");
+      img.src = "images/logo.png";
+      img.alt = "Bot";
+      avatar.appendChild(img);
+      wrapper.appendChild(avatar);
+
+      const contentDiv = document.createElement("div");
+
+      const botMsg = document.createElement("div");
+      botMsg.className = "chat-bot";
+      botMsg.textContent = data.answer;
+      contentDiv.appendChild(botMsg);
+
+      // Image
+      if (data.image) {
+        const mediaDiv = document.createElement("div");
+        mediaDiv.className = "bot-media";
+        const img = document.createElement("img");
+        img.src = data.image;
+        mediaDiv.appendChild(img);
+        contentDiv.appendChild(mediaDiv);
+      }
+
+      // PDF
+      if (data.file) {
+        const pdfBtn = document.createElement("button");
+        pdfBtn.className = "quick-reply-btn";
+        pdfBtn.style.marginTop = "8px";
+        pdfBtn.textContent = "📄 Download PDF";
+        pdfBtn.onclick = () => window.open(data.file, "_blank");
+        contentDiv.appendChild(pdfBtn);
+      }
+
+      // Link
+      if (data.link) {
+        const linkBtn = document.createElement("button");
+        linkBtn.className = "quick-reply-btn";
+        linkBtn.style.marginTop = "8px";
+        linkBtn.textContent = "🔗 Open Link";
+        linkBtn.onclick = () => window.open(data.link, "_blank");
+        contentDiv.appendChild(linkBtn);
+      }
+
+      wrapper.appendChild(contentDiv);
+      chatMessages.appendChild(wrapper);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Form submit
+    chatForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      sendMessage();
+    });
+
+    // Enter to send
+    chatInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
