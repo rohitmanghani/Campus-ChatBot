@@ -9,19 +9,46 @@
 <body>
 
   <!-- Floating Button -->
-  <div id="chatbot-button">
-    <img src="images/logo.png" alt="Chatbot Icon" id="chat-icon">
+  <div id="chatbot-button" class="pulsing">
+    <img src="images/logo.png" alt="Chatbot">
+  </div>
+
+  <!-- Suggestion Tooltip -->
+  <div id="suggestion-tooltip" class="suggestion-tooltip" style="display: none;">
+    <div class="avatar">
+      <img src="images/logo.png" alt="Assistant">
+    </div>
+    <div>
+      <div class="name">Campus Assistant</div>
+      <div class="text">Need help? Ask me anything!</div>
+    </div>
+    <button class="close-btn" id="tooltip-close">×</button>
   </div>
 
   <!-- Chat Window -->
   <div id="chatbot-window">
-    <div id="chatbot-header">Campus Chatbot</div>
+    <div id="chatbot-header">
+      <div class="header-content">
+        <div class="bot-avatar">
+          <img src="images/logo.png" alt="Bot">
+        </div>
+        <div class="header-text">
+          <h3>Campus Assistant</h3>
+          <p>Online • Ready to help</p>
+        </div>
+      </div>
+      <button id="close-btn">×</button>
+    </div>
 
     <div id="chatbot-messages"></div>
 
-    <form id="chatbot-form" onsubmit="return false;">
-      <input id="chatbot-input" type="text" placeholder="Ask something..." autocomplete="off" />
-      <button type="button" onclick="sendMessage()">➤</button>
+    <form id="chatbot-form">
+      <input id="chatbot-input" type="text" placeholder="Type your message..." autocomplete="off" />
+      <button id="send-btn" type="submit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+        </svg>
+      </button>
     </form>
   </div>
 
