@@ -1,57 +1,147 @@
 [
   {
     "question": "What is the main address and general contact number for the Hagen campus?",
-    "answer": "The Hagen Campus of the University of Applied Sciences South Westphalia is located at Haldener Straße 182, 58095 Hagen. Postal address: P.O. Box 600220, 58138 Hagen. General phone number: (02331) 9330-0."
+    "answer": "You can find the Hagen Campus at **Haldener Straße 182, 58095 Hagen**. For general inquiries, you can call the switchboard at **(02331) 9330-0**."
   },
   {
     "question": "What are the opening hours of the campus buildings?",
-    "answer": "Campus buildings are typically open Monday to Friday from 07:00 to 21:00 and on Saturdays from 08:00 to 18:00."
+    "answer": "The campus buildings are generally open **Monday to Friday from 07:00 to 21:00**, and on **Saturdays from 08:00 to 18:00**."
   },
   {
     "question": "How do I access the campus Wi-Fi (Eduroam)?",
-    "answer": "You can connect to Eduroam using your university login credentials. Select the 'eduroam' network and sign in with your student email and password."
+    "answer": "To get online, select the **eduroam** network on your device and log in using your university email address and password."
   },
   {
     "question": "Where can I view my lecture schedules and seminar timings?",
-    "answer": "You can check your weekly lecture and seminar schedule through the FH Südwestfalen student portal VPIS under the 'Weekly Schedule' section."
+    "answer": "Your weekly lecture and seminar schedules are available in the **VPIS** student portal under the 'Weekly Schedule' section."
   },
   {
     "question": "Where is the Mensa ('Snack it!') located and what are its opening hours?",
-    "answer": "The Mensa 'Snack it!' is located in the basement of the Hagen campus at Haldener Straße 182. Opening hours: Monday–Friday: 07:30–14:30, Saturday: 09:30–13:30. Hot meals are served Monday–Thursday from 11:00–14:00 and Friday from 11:00–13:45."
+    "answer": "The 'Snack it!' Mensa is located in the basement of the main building (Haldener Str. 182). It is open **Mon–Fri 07:30–14:30**. Hot lunch is served Mon–Thu 11:00–14:00 and Fri 11:00–13:45."
   },
   {
     "question": "What are the opening hours and contact details of the Student Service Office?",
-    "answer": "You can contact the Student Service Office at (02331) 9330-6851 or service-hagen@fh-swf.de. It is located at Haldener Straße 182, Rooms HE 11 and HE 11/1. Opening hours: Monday–Friday: 08:30–12:00. Additional hours Tuesday and Wednesday: 13:00–14:30. Saturday: 08:30–13:00 (and 14:00–15:00 for cooperative education students)."
+    "answer": "The Student Service Office is in Rooms **HE 11 & HE 11/1**. You can email **service-hagen@fh-swf.de** or call **(02331) 9330-6851**. They are open Mon–Fri 08:30–12:00, plus Tue/Wed afternoons 13:00–14:30."
   },
   {
     "question": "Where is the main library located and what are its opening times?",
-    "answer": "The Fachbibliothek Hagen (main library) is located at Haldener Straße 182. It is open Monday to Friday from 07:00 to 21:00 and on Saturdays from 08:00 to 18:00."
+    "answer": "The main library (Fachbibliothek) is located at **Haldener Straße 182**. It is open **Monday to Friday 07:00–21:00** and **Saturday 08:00–18:00**."
   },
   {
     "question": "Is there student housing available near the Hagen campus?",
-    "answer": "Yes. The Studierendenwerk Dortmund operates the student residence 'Im Alten Holz 133–135', located about 1.4 km from the campus. It offers modern single and double apartments. Applications can be submitted online via the Studierendenwerk Dortmund website."
+    "answer": "Yes, the **Im Alten Holz** residence is about 1.4 km from campus and offers single/double apartments. It is managed by the Studierendenwerk Dortmund, and you can apply directly on their website."
   },
   {
     "question": "How can I find student jobs, SHK/WHK positions, or internships?",
-    "answer": "Student jobs, internships, and thesis opportunities are available through the FH Südwestfalen Career Portal (Karriereportal), operated in cooperation with JobTeaser."
+    "answer": "The best place to look is the **FH Südwestfalen Career Portal**, which is operated in cooperation with JobTeaser. You can find jobs, internships, and thesis opportunities there."
+    "link": "https://fh-swf.jobteaser.com/en"
   },
   {
     "question": "What is a Semesterticket?",
-    "answer": "A Semesterticket is a prepaid public transport pass included in your semester fee. It allows unlimited travel within the authorized region using buses, trams, S-Bahn, U-Bahn, and regional trains (excluding ICE/IC). It is valid for the entire semester."
+    "answer": "Your Semesterticket is included in your semester fee. It allows you **unlimited travel** on buses, trams, and regional trains (no ICE/IC) within the authorized region for the whole semester."
   },
   {
     "question": "Where is the student portal?",
-    "answer": "You can access the student portal here.",
+    "answer": "You can access the VPIS student portal via the link below:",
     "link": "https://vpis.fh-swf.de"
   },
   {
     "question": "Where is the weeks Timetable?",
-    "answer": "You can access the student portal here.",
+    "answer": "Here is the PDF file containing the weekly timetable:",
     "file": "static/TT.pdf"
   },
   {
     "question": "Where can I see the campus map?",
-    "answer": "Here is the campus map.",
+    "answer": "Here is a map of the Hagen campus to help you find your way around:",
     "image": "static/map.png"
+  },
+  {
+    "question": "How do I get a library card and borrow books?",
+    "answer": "First, register online via the university’s library portal (Bib-Konto). Afterward, visit the library with your student ID (or valid photo ID) to activate your account. Books can be borrowed for 30 days and renewed online.",
+    "link": "https://kai.fhb.fh-swf.de"
+  },
+  {
+    "question": "How do I access the e-learning platform (Moodle)?",
+    "answer": "You can access Moodle by using your FH SWF login credentials to sign in at the link provided below.",
+    "link": "https://elearning.fh-swf.de"
+  },
+  {
+    "question": "How can I check my student email online (Webmail)?",
+    "answer": "You can check your emails by logging in via the GWMail web interface.",
+    "link": "https://gwmail.fh-swf.de"
+  },
+  {
+    "question": "What is my official university email address and how do I access it?",
+    "answer": "Your email address is typically s[student number]@fh-swf.de. You can access it via the webmail portal linked on the IT Service Desk website."
+  },
+  {
+    "question": "How can I set up VPN to access internal university resources remotely?",
+    "answer": "To access internal resources, use the FH SWF VPN service. You can find setup instructions and download links on the VPN page.",
+    "link": "https://www.fh-swf.de/de/studierende/rund_ums_studium/its/vpn_zugang_neu.php"
+  },
+  {
+    "question": "Where do I manage study-related services (exam registration, re-registration, certificates)?",
+    "answer": "You can manage services like exam registration, certificates, and address changes via the central FH SWF Hochschulportal.",
+    "link": "https://www.fh-swf.de/en/login_1.php"
+  },
+  {
+    "question": "How do I access the campus cloud and file-sharing service?",
+    "answer": "FH SWF uses **sciebo** for cloud storage. You can log in and find more information via the IT services overview page."
+  },
+  {
+    "question": "What is the new student ID system?",
+    "answer": "FH Südwestfalen now uses the **FH SWF App** as a digital student ID. It replaces the physical card and includes your ID, library card, and semester ticket. You can download it from the App Store or Google Play.",
+    "link": "https://www.fh-swf.de/cms/app/"
+  },
+  {
+    "question": "How do I register or withdraw from exams?",
+    "answer": "You can register or withdraw from exams via the online portals. Please note that withdrawal due to illness requires submitting a medical certificate."
+  },
+  {
+    "question": "Can I change my degree programme?",
+    "answer": "Yes, but official approval is needed. Previous credits may be recognised if you are transferring to a higher semester."
+  },
+  {
+    "question": "How do I get enrolment certificates or transcripts?",
+    "answer": "You can download enrolment certificates and transcripts through the Main Online Portal. For older exam regulations, use the Virtual Service Center.",
+    "link": "https://www.fh-swf.de/de/login_1.php"
+  },
+  {
+    "question": "How do I re-register for the next semester?",
+    "answer": "Re-registration is done by paying the semester fee (Semesterbeitrag) before the deadline found in the Academic Calendar. If you pay after the deadline, a late fee (typically around €10) usually applies."
+  },
+  {
+    "question": "Who do I contact if I have technical issues with my student account, VPN, or network access?",
+    "answer": "Please contact the central IT Service Desk (Rechenzentrum). You can email them at servicedesk@fh-swf.de or call (02371) 4356000."
+  },
+  {
+    "question": "How can I print, copy, and scan documents on campus?",
+    "answer": "You can use the multifunction devices (MFDs) located in the labs and libraries. You must load credit onto your FH Card (or digital ID wallet) at the terminals to pay for these services."
+  },
+  {
+    "question": "What should I do if I am sick and cannot attend a scheduled exam?",
+    "answer": "Immediately inform the Examination Office (Prüfungsamt) by emailing service-hagen@fh-swf.de and submit a medical certificate (ärztliches Attest) confirming your illness as soon as possible."
+  },
+  {
+    "question": "Where can I get general study guidance or advice on changing my major?",
+    "answer": "You can contact the Central Student Advisory Service (ZSB) for confidential guidance on study choices and organization. Email them at zsb@fh-swf.de."
+  },
+  {
+    "question": "Is there psychological counseling available for students dealing with stress or personal issues?",
+    "answer": "Yes, the Studierendenwerk Dortmund offers free and confidential Psychosocial Counselling (PSB). You can contact them at (0231) 755-5020 or via email at psb@stwdo.de to schedule an appointment."
+  },
+  {
+    "question": "Is there a specific office that assists international students and students wanting to study abroad?",
+    "answer": "Yes, the International Office (Akademisches Auslandsamt) handles these matters. Contact them at aaa@fh-swf.de, or use mobility@fh-swf.de for exchange-specific inquiries."
+  },
+  {
+    "question": "Does the university offer sports activities or courses?",
+    "answer": "Yes, the university offers 'Hochschulsport', which is organized by the AStA and is free for students. Activities include sports like football and badminton. Check the AStA website for the current schedule or email sport@asta-swf.de.",
+    "link": "https://asta-swf.de/"
+  },
+  {
+    "question": "Where can I find the start and end dates of the lecture period and exam weeks?",
+    "answer": "All key dates, including lecture periods, exam phases, and holidays, are published in the Academic Calendar (Semestertermine).",
+    "link": "https://www.fh-swf.de/de/studierende/studienorganisation/vorlesungszeiten/vorlesungzeit.php"
   }
 ]
