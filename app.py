@@ -32,7 +32,7 @@ GREETING_RESPONSES = [
     "Hello there! 😊 What can I do for you?",
     "Hey! Need help with campus info?",
     "Hi! I'm here to assist you with anything about the campus.",
-    "Welcome! 👋 Ask me anything about library hours, modules, or campus services."
+    "Welcome! 👋 Ask me anything about Fachhochschule Südwestfalen"
 ]
 
 GOODBYE_RESPONSES = [
