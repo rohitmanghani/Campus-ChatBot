@@ -973,3 +973,132 @@
         max-width: 200px;
       }
     }
+
+    /* === Chat message layout fixes: force suggestions/resources under bubble === */
+
+/* Ensure each message stacks vertically: bubble first, resources next */
+.message-wrapper {
+  display: flex !important;
+  flex-direction: column !important;   /* <- ensures vertical stacking */
+  align-items: flex-start;             /* default: bot messages on left */
+  gap: 6px;
+  width: 100%;
+}
+
+/* Keep user messages right aligned */
+.message-wrapper.user {
+  align-items: flex-end;
+}
+
+/* Bot bubble / user bubble sizes */
+.chat-bot, .chat-user {
+  max-width: 84%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+/* Bot bubble align left */
+.message-wrapper.bot .chat-bot {
+  align-self: flex-start;
+  margin-left: 6%;
+}
+
+/* User bubble align right */
+.message-wrapper.user .chat-user {
+  align-self: flex-end;
+  margin-right: 6%;
+}
+
+/* Container for resources (images / pdf / link / suggestions) */
+.bot-resources {
+  width: 100%;
+  display: flex;
+  flex-direction: column;   /* vertical stack */
+  gap: 8px;
+  margin-top: 6px;
+  box-sizing: border-box;
+  padding-left: 6%;        /* align with bubble start */
+}
+
+/* Make quick-reply-style buttons sit below the bubble and match bubble width */
+.bot-resources .quick-reply-btn,
+.bot-resources .pdf-btn,
+.bot-resources .link-btn {
+  width: calc(84% - 2px);   /* aligns with bubble max-width */
+  align-self: flex-start;
+  padding: 10px 12px;
+  border-radius: 22px;
+  border: 2px solid #667eea;
+  background: #fff;
+  color: #667eea;
+  text-align: center;
+  cursor: pointer;
+  white-space: normal;
+  box-sizing: border-box;
+}
+
+/* Hover for these buttons */
+.bot-resources .quick-reply-btn:hover,
+.bot-resources .pdf-btn:hover,
+.bot-resources .link-btn:hover {
+  background: #667eea;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Inline image preview in resources */
+.bot-resources img {
+  max-width: calc(84% - 4px);
+  border-radius: 10px;
+  align-self: flex-start;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+/* Make the "Did you mean:" label appear above suggestions */
+.bot-resources .suggestion-title {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #333;
+  align-self: flex-start;
+}
+
+/* Keep global quick-replies (if used) separate and compact */
+#quick-replies { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+#quick-replies .quick-reply-btn { width:auto; padding:8px 14px; }
+
+/* Small screens: adapt widths */
+@media (max-width:520px) {
+  .chat-bot, .chat-user, .bot-resources .quick-reply-btn, .bot-resources img {
+    max-width: 86%;
+    width: 86%;
+  }
+  .bot-resources { padding-left: 7%; }
+}
+/* Conversation ended divider + button */
+#convo-end-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 12px auto;
+  width: 100%;
+}
+
+#convo-end-divider .quick-reply-btn {
+  background: white;
+  border: 2px solid #667eea;
+  color: #667eea;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+#convo-end-divider .quick-reply-btn:hover {
+  background: #667eea;
+  color: white;
+}
