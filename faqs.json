@@ -143,5 +143,78 @@
     "question": "Where can I find the start and end dates of the lecture period and exam weeks?",
     "answer": "All key dates, including lecture periods, exam phases, and holidays, are published in the Academic Calendar (Semestertermine).",
     "link": "https://www.fh-swf.de/de/studierende/studienorganisation/vorlesungszeiten/vorlesungzeit.php"
+  },
+
+  {
+    "question": "How do I apply for academic leave (Urlaubssemester)?",
+    "answer": "You can apply for academic leave via the Online Portal during the re-registration period. Leave is generally granted for one semester for reasons such as sickness, internships, study abroad, volunteer work, pregnancy, or parental leave. Please note that fees must still be paid if required, and module examinations usually cannot be completed during this time."
+  },
+  {
+    "question": "What are the maternity protection rules for pregnant students?",
+    "answer": "Pregnant women and mothers who are studying are entitled to a six-week protection period before delivery and a minimum eight-week protection period after birth. The Family Support Centre is your first contact for questions regarding maternity protection."
+  },
+  {
+    "question": "How do I exmatriculate from the university?",
+    "answer": "If you want to leave the university, for example after completing your studies, you must apply for exmatriculation. Exmatriculation is usually done at the end of the semester, and you can apply for it along with a reimbursement of semester fees via the forms provided."
+  },
+  {
+    "question": "Is there accident insurance coverage for students?",
+    "answer": "Yes, enrolled students are covered by statutory accident insurance while attending lectures, seminars, university events, visiting the library, and on the direct way to and from the university. Private activities such as studying at home or breaks for shopping are not covered."
+  },
+  {
+    "question": "Can I apply for compensation for disadvantages in examinations?",
+    "answer": "Yes, students unable to sit examinations as planned due to a disability or chronic illness may apply to the Head of Examination Board for compensation. Compensation may include an extension of examination time, a separate room, or technical aids."
+  },
+  {
+    "question": "Are there fees for overdue library books?",
+    "answer": "While library services are generally free, charges apply for overdue media: 2.00 Euro for up to 10 days, 5.00 Euro for up to 20 days, 10.00 Euro for up to 30 days, and 20.00 Euro for up to 40 days. Fees are paid via bank transfer."
+  },
+  {
+    "question": "Can I borrow books from other libraries (Interlibrary loans)?",
+    "answer": "Yes, you can request literature from other libraries via the interlibrary loan link in the KAI catalogue if it is not available in the branch libraries. Each interlibrary loan costs a 1.50 Euro processing fee."
+  },
+  {
+    "question": "Is the Citavi software available for students?",
+    "answer": "Yes, a licensed version of Citavi is available to university members for reference management. It allows for editing projects in teams and managing an unlimited number of references."
+  },
+  {
+    "question": "What is the Young Students programme?",
+    "answer": "Students in upper secondary school can take part in lectures, tutorials, and internships at the Iserlohn, Soest, Hagen, and Meschede campuses. They can also demonstrate their achievements in examinations."
+  },
+  {
+    "question": "How do I prove my student status for child benefit (Kindergeld)?",
+    "answer": "You can prove your status by submitting the certificate of enrolment to the Family Benefits Office. You receive this certificate automatically from the university after enrolment and after every re-registration."
+  },
+  {
+    "question": "Under what conditions can I get a refund of my semester fees?",
+    "answer": "Refunds are possible if you withdraw from the university, take a leave of absence, or refuse to enrol BEFORE the start of the semester. You can apply for a refund in the Online Portal."
+  },
+  {
+    "question": "How do I submit authenticated copies of my certificates?",
+    "answer": "Officially certified copies must be issued by an authority or institution that has an official seal, such as municipal administrations or local courts. Authentications from health insurance companies and savings banks are not accepted."
+  },
+  {
+    "question": "What are ECTS credits and how is the workload calculated?",
+    "answer": "Credits indicate the student workload, where one semester hour per week roughly corresponds to 1 to 1.5 credits. The workload is decisive, with every 25-30 hours equalling one credit."
+  },
+  {
+    "question": "Can I attend courses as an auditor (Gasthörer)?",
+    "answer": "Yes, students studying at other universities or interested individuals can be admitted as auditors upon application. This entitles them to attend courses and take examinations."
+  },
+  {
+    "question": "How do I change my address or name in the system?",
+    "answer": "You can change your address in the Online Portal. If your name or gender changes (e.g., due to marriage), you must upload the corresponding application and a proving document (like a marriage certificate) to the Online Portal."
+  },
+  {
+    "question": "What does NC (Numerus Clausus) mean for admission?",
+    "answer": "Some degree courses have more applicants than places available, so a local NC is determined. Places are allocated via a selection procedure based on academic performance and waiting time."
+  },
+  {
+    "question": "Where do I submit my BAföG application?",
+    "answer": "You submit your BAföG application to the Studierendenwerk Dortmund, located at Vogelpothsweg 85, 44227 Dortmund. The certificate required for the BAföG office can be found in the Online Portal."
+  },
+  {
+    "question": "What is the Learning Centre on the Hagen campus?",
+    "answer": "The Learning Centre (Room 412) offers support for modules like mathematics, electrical engineering, and physics. It provides space for learning and discussing, with staff available to answer questions, and no registration is required."
   }
 ]
