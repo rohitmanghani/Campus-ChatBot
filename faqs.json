@@ -216,5 +216,45 @@
   {
     "question": "What is the Learning Centre on the Hagen campus?",
     "answer": "The Learning Centre (Room 412) offers support for modules like mathematics, electrical engineering, and physics. It provides space for learning and discussing, with staff available to answer questions, and no registration is required."
+  },
+  {
+    "question": "What happens to my files if I save them locally on a PC in the university pool?",
+  "answer": "Due to technical protection measures, any files stored locally on the C:\\ drives of the PC pool computers are lost whenever the computer is restarted. You should use the campus cloud 'sciebo' or an external drive to save your work."
+  },
+  {
+    "question": "I missed a class and don't understand the material. Where can I get help on the Hagen campus?",
+  "answer": "The Learning Centre on the Hagen campus (Room 412) offers support for modules like mathematics, electrical engineering, and physics. Staff members are available to answer questions and help you catch up on basic knowledge, and no registration is required."
+  },
+  {
+    "question": "Can I take exams during a semester of academic leave?",
+  "answer": "Generally, module examinations or assignments cannot be completed during a leave semester. Exceptions are only made for parental leave, leave due to caring for close relatives, or the repetition of failed module examinations."
+  },
+  {
+    "question": "How do I activate my library account to start borrowing books?",
+  "answer": "To borrow books, you must activate your account by visiting your branch library in person and presenting your university ID card (Chiporello) or an official identity document with a photograph."
+  },
+  {
+    "question": "What is the deadline for submitting a medical certificate if I am sick for an exam?",
+  "answer": "The original doctor's certificate must be received by the Student Service Office no later than three working days after the respective examination. Please note that digital certificates from providers like TeleClinic are not accepted."
+  },
+  {
+    "question": "How can I access university-only services like library databases from home?",
+  "answer": "To use services that are normally only available on campus, such as certain library services, you must first set up a VPN connection to the university network. Instructions for various operating systems are available through the IT services."
+  },
+  {
+    "question": "Is there a specific email address for library-related research questions?",
+  "answer": "Yes, advice on research and e-media is provided via the electronic information service 'e-Auskunft' at e-Auskunft@fh-swf.de. They also offer individual research consulting hours online."
+  },
+  {
+    "question": "When is the re-registration period for the Summer Semester 2026?",
+  "answer": "The re-registration period for the Summer Semester 2026 is from January 6, 2026, to January 20, 2026. You must log in to the Online Portal and transfer the required semester fee during this time."
+  },
+  {
+    "question": "Does the university provide free cloud storage for my files?",
+  "answer": "Yes, you can store up to 30 GB of data free of charge in the campus cloud 'sciebo'. The data is stored in compliance with the German Data Protection Act and can be accessed worldwide."
+  },
+  {
+    "question": "How do I access the library's online self-study courses?",
+  "answer": "The university library offers individual modules as self-study courses via the learning platform Moodle. You can log in with your university password, select 'Bibliothek' under 'Kursbereiche,' and register for courses, including an English one on Literature Research."
   }
 ]
